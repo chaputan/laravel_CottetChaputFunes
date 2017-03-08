@@ -1,7 +1,9 @@
 <!doctype html>
 <html lang="fr">
     <head>
-        /* A compléter */
+        {!! Html::style('assets/css/bootstrap.css') !!}
+        {!! Html::style('assets/css/mangas.css') !!}
+        {!! Html::style('assets/css/bootstrap-theme.css') !!}
     </head>
     <body class="body">
         <div class="container">
