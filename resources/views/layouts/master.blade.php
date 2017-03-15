@@ -1,7 +1,9 @@
 <!doctype html>
 <html lang="fr">
     <head>
-        /* A compléter */
+        {!! Html::style('assets/css/bootstrap.css') !!}
+        {!! Html::style('assets/css/mangas.css') !!}
+        {!! Html::style('assets/css/bootstrap-theme.css') !!}
     </head>
     <body class="body">
         <div class="container">
@@ -16,14 +18,14 @@
                         </button>
                         <a class="navbar-brand" href="{{ url('/') }}">Oeuvres</a>
                     </div>
-                     /* A compléter */
+                    @if (Session::get('id')==0)
                     <div class="collapse navbar-collapse" id="navbar-collapse-target">
                         <ul class="nav navbar-nav navbar-right">                             
                             <li><a href=" /* A compléter */" data-toggle="collapse" data-target=".navbar-collapse.in">Se connecter</a></li>
                         </ul> 
                     </div>
-                     /* A compléter */
-                     /* A compléter */                     
+                    @endif
+                    @if (Session::get('id')>0)                   
                     <div class="collapse navbar-collapse" id="navbar-collapse-target">
                         <ul class="nav navbar-nav">                           
                             <li><a href="/* A compléter */" data-toggle="collapse" data-target=".navbar-collapse.in">Lister</a></li>
@@ -34,13 +36,16 @@
                             <li><a href="/* A compléter */" data-toggle="collapse" data-target=".navbar-collapse.in">Se déconnecter</a></li>
                         </ul>                         
                     </div>
-                     /* A compléter */    
+                    @endif   
                 </div><!--/.container-fluid -->
             </nav>
         </div> 
         <div class="container">
-             /* A compléter */
+             @yield('content')
         </div>
-         /* A compléter */
+        {!! Html::script('assets/js/bootstrap.min.js') !!}
+        {!! Html::script('assets/js/jquery-2.1.3.min.js') !!}
+        {!! Html::script('assets/js/ui-bootstrap-tpls.js') !!}
+        {!! Html::script('assets/js/bootstrap.js') !!}
     </body>
 </html>
