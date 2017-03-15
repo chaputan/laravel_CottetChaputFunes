@@ -16,8 +16,10 @@ Route::get('/', function () {
 });
 
 // Afficher le formulaire d'authentification 
+Route::get('/signIn', 'ProprietaireController@getLogin');
 
 // Réponse au clic sur le bouton Valider du formulaire formLogin
+Route::post('/signIn', 'ProprietaireController@signIn');
 
 // Déloguer le propriétaire
 
