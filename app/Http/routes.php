@@ -16,37 +16,31 @@ Route::get('/', function () {
 });
 
 // Afficher le formulaire d'authentification 
-/* A compléter */
 
-// Authentifie le client à partir du login et mdp saisis
-/* A compléter */
+// Réponse au clic sur le bouton Valider du formulaire formLogin
 
-// Déloguer le client
-/* A compléter */
-// Afficher le compte du client
-/* A compléter */
-// Enregistrer le compte du client
-/* A compléter */
-
-// Afficher la recherche d'Articles
-/* A compléter */
-// Afficher la liste des articles du domaine sélectionné
-/* A compléter */
-// Afficher la liste des articles d'un domaine
-/* A compléter */
-// Afficher le détail d'un Article
-/* A compléter */
-
-// Ajouter un article au panier
-/* A compléter */
-// Afficher le Panier
-/* A compléter */
-// Supprime un Article du panier
-/* A compléter */
-// Valide le panier
-/* A compléter */
+// Déloguer le propriétaire
 
 
-// Afficher la liste des articles achetés
-/* A compléter */
+// Afficher la liste des Oeuvres
+
+// Afficher un manga pour pouvoir le modifier
+
+// Enregistrer la mise à jour d'une oeuvre
+
+// Afficher le formulaire de saisie d'une nouvelle oeuvre
+
+// Supprimer une oeuvre
+
+
+// Afficher la liste des réservations
+
+// Réserver une oeuvre
+
+// Valider une réservation
+
+// Confirmer une réservation
+
+// Supprimer une réservation
+
 

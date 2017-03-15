@@ -1,4 +1,5 @@
-/* A compléter */ 
+ /* A compléter */
+ /* A compléter */  
 <div class="col-md-12 well well-md">
     <center><h1>Authentification</h1></center>
     <div class="form-horizontal">    
@@ -11,7 +12,7 @@
         <div class="form-group">
             <label class="col-md-3 control-label">Mot de passe : </label>
             <div class="col-md-6 col-md-3">
-                <input type="password" name="pwd" ng-model="pwd" class="form-control" placeholder="Votre mot de passe" required>
+                <input type="password" name="pwd" class="form-control" placeholder="Votre mot de passe" required>
             </div>
         </div>
         <div class="form-group">
@@ -20,9 +21,10 @@
             </div>
         </div>
         <div class="col-md-6 col-md-offset-3">
-            /* A compléter */
+             /* A compléter */
         </div>
     </div>
 </div>
-/* A compléter */
+ /* A compléter */
+ /* A compléter */
 

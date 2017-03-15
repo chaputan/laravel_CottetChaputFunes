@@ -1,9 +1,7 @@
 <!doctype html>
 <html lang="fr">
     <head>
-        {!! Html::style('assets/css/bootstrap.css') !!}
-        {!! Html::style('assets/css/mangas.css') !!}
-        {!! Html::style('assets/css/bootstrap-theme.css') !!}
+        /* A compléter */
     </head>
     <body class="body">
         <div class="container">
@@ -16,39 +14,33 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar+ bvn"></span>
                         </button>
-                        <a class="navbar-brand" href="{{ url('/') }}">Net Articles</a>
+                        <a class="navbar-brand" href="{{ url('/') }}">Oeuvres</a>
                     </div>
-                    @if (Session::get('id')==0)
+                     /* A compléter */
                     <div class="collapse navbar-collapse" id="navbar-collapse-target">
                         <ul class="nav navbar-nav navbar-right">                             
-                            <li><a href="{{ url('/getLogin') }}" data-toggle="collapse" data-target=".navbar-collapse.in">Se connecter</a></li>
+                            <li><a href=" /* A compléter */" data-toggle="collapse" data-target=".navbar-collapse.in">Se connecter</a></li>
                         </ul> 
                     </div>
-                    @endif
-                    @if (Session::get('id')>0)
+                     /* A compléter */
+                     /* A compléter */                     
                     <div class="collapse navbar-collapse" id="navbar-collapse-target">
                         <ul class="nav navbar-nav">                           
-                            <li><a href="{{ url('/getRecherche') }}" data-toggle="collapse" data-target=".navbar-collapse.in">Rechercher</a></li>
-                            <li><a href="{{ url('/getAchats') }}" data-toggle="collapse" data-target=".navbar-collapse.in">Mes articles</a></li> 
-                            <li><a href="{{ url('/getCompte') }}" data-toggle="collapse" data-target=".navbar-collapse.in">Mon compte</a></li>
-                            @if (Session::get('basket'))
-                                <li><a href="{{ url('/getBasket') }}" data-toggle="collapse" data-target=".navbar-collapse.in">Panier</a></li> 
-                            @endif
+                            <li><a href="/* A compléter */" data-toggle="collapse" data-target=".navbar-collapse.in">Lister</a></li>
+                            <li><a href="/* A compléter */" data-toggle="collapse" data-target=".navbar-collapse.in">Ajouter</a></li>
+                            <li><a href="/* A compléter */"data-toggle="collapse" data-target=".navbar-collapse.in">Réservations</a></li>                       
                         </ul>  
                         <ul class="nav navbar-nav navbar-right">                             
-                            <li><a href="{{ url('/signOut') }}" data-toggle="collapse" data-target=".navbar-collapse.in">Se déconnecter</a></li>
-                        </ul> 
-                    </div> 
-                    @endif
+                            <li><a href="/* A compléter */" data-toggle="collapse" data-target=".navbar-collapse.in">Se déconnecter</a></li>
+                        </ul>                         
+                    </div>
+                     /* A compléter */    
                 </div><!--/.container-fluid -->
             </nav>
         </div> 
         <div class="container">
-            @yield('content')
+             /* A compléter */
         </div>
-        {!! Html::script('assets/js/bootstrap.min.js') !!}
-        {!! Html::script('assets/js/jquery-2.1.3.min.js') !!}
-        {!! Html::script('assets/js/ui-bootstrap-tpls.js') !!}
-        {!! Html::script('assets/js/bootstrap.js') !!}
+         /* A compléter */
     </body>
 </html>
