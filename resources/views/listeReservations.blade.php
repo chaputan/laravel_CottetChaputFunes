@@ -29,7 +29,7 @@
             <td style="text-align:center;">
                 <a class="glyphicon glyphicon-trash" data-toggle="tooltip" data-placement="top" title="Supprimer" href="#"
                     onclick="javascript:if (confirm('Suppression confirmée ?'))
-                        { window.location=' /* A compléter */';}">
+                        { window.location='{{ url('/supprimerReservation') }}/{{ $reservation->dateReservation }}/{{ $reservation->id_oeuvre }}';}">
                 </a>
             </td>                    
         </tr>

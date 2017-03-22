@@ -46,5 +46,5 @@ Route::get('/listerReservations', 'ReservationController@getReservations');
 // Confirmer une réservation
 
 // Supprimer une réservation
-
+Route::get('/supprimerReservation/{date_reservation}/{id_oeuvre}', 'ReservationController@supprimerReservation');
 
