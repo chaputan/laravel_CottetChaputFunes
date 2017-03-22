@@ -30,7 +30,8 @@ class OeuvreController extends Controller
      * @return Vue formOeuvre
      */
     public function getFormOeuvre ($idOeuvre = 0) {
-        $erreur = "";
+        $erreur = Session::get('erreur');
+        Session::forget('erreur');
         $prop = new Proprietaire();
         $props = $prop->getProprietaires();
         $oeuvre = new Oeuvre();
@@ -45,6 +46,10 @@ class OeuvreController extends Controller
         return view('formOeuvre', compact('props','oeuvre','erreur'));
     }
     
+    /**
+     * Insert ou mets à jour une oeuvre
+     * @return Vue
+     */
     public function updateOeuvre() {
         $id_oeuvre = Request::input('id_oeuvre');
         
@@ -55,7 +60,14 @@ class OeuvreController extends Controller
         if($titre == '' || $prop == 0 || $prix == '') {
             $erreur = 'Tous les champs ne sont pas remplis !';
             Session::put('erreur', $erreur);
-            return redirect('/formOeuvre');
+            return redirect('/getFormOeuvre/'.$id_oeuvre);
+        }
+        
+        // Le champ "prix" ne contient pas un nombre
+        if(floatVal($prix) == 0) {
+            $erreur = 'Un nombre est attendu dans le prix !';
+            Session::put('erreur', $erreur);
+            return redirect('/getFormOeuvre/'.$id_oeuvre);
         }
         
         $oeuvre = new Oeuvre();
@@ -66,7 +78,7 @@ class OeuvreController extends Controller
             } catch(Exception $e) {
                 $erreur = $e->getMessage();
                 Session::put('erreur', $erreur);
-                return redirect('/formOeuvre');
+                return redirect('/getFormOeuvre/'.$id_oeuvre);
             }
         } 
         else {
@@ -75,7 +87,7 @@ class OeuvreController extends Controller
             } catch(Exception $e) {
                 $erreur = $e->getMessage();
                 Session::put('erreur', $erreur);
-                return redirect('/formOeuvre');
+                return redirect('/getFormOeuvre/'.$id_oeuvre);
             }
         }
         
