@@ -35,7 +35,14 @@ class OeuvreController extends Controller
         $props = $prop->getProprietaires();
         $oeuvre = new Oeuvre();
         $oeuvres = $oeuvre->getOeuvre($idOeuvre);
-        return view('formOeuvre', compact('props','oeuvres','erreur'));
+        
+        if(empty($oeuvres)) {
+            $oeuvre = null;
+        } else {
+            $oeuvre = $oeuvres[0];
+        }
+
+        return view('formOeuvre', compact('props','oeuvre','erreur'));
     }
     
     public function updateOeuvre() {
@@ -45,21 +52,38 @@ class OeuvreController extends Controller
         $prop = Request::input('cbProprietaire');
         $prix = Request::input('prix');
         
+        if($titre == '' || $prop == 0 || $prix == '') {
+            $erreur = 'Tous les champs ne sont pas remplis !';
+            Session::put('erreur', $erreur);
+            return redirect('/formOeuvre');
+        }
+        
         $oeuvre = new Oeuvre();
         
         if($id_oeuvre == 0) {
-            $oeuvre->ajouterOeuvre($titre, $prop, $prix);
-            $erreur = Session::get('erreur');
-            $oeuvres = new Oeuvre();
-            //on récupère la liste de tous les mangas
-            $oeuvres = $oeuvres->getOeuvres();
-            //on affiche la liste de ces mangas
-            return view('listeOeuvres', compact('oeuvres', 'erreur'));
+            try{
+                $oeuvre->ajouterOeuvre($titre, $prop, $prix);
+            } catch(Exception $e) {
+                $erreur = $e->getMessage();
+                Session::put('erreur', $erreur);
+                return redirect('/formOeuvre');
+            }
         } 
         else {
-            echo "Œuvre existante !"; // TODO : A faire !
+            try{
+                $oeuvre->updateOeuvre($id_oeuvre, $titre, $prop, $prix);
+            } catch(Exception $e) {
+                $erreur = $e->getMessage();
+                Session::put('erreur', $erreur);
+                return redirect('/formOeuvre');
+            }
         }
-        return view('listeOeuvres');
+        
+        $erreur = Session::get('erreur');
+        //on récupère la liste de tous les mangas
+        $oeuvres = $oeuvre->getOeuvres();
+        //on affiche la liste de ces mangas
+        return view('listeOeuvres', compact('oeuvres', 'erreur'));
     }
     
     /**
