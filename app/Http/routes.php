@@ -25,6 +25,7 @@ Route::post('/signIn', 'ProprietaireController@signIn');
 Route::get('/signOut', 'ProprietaireController@signOut');
 
 // Afficher la liste des Oeuvres
+Route::get('/listerOeuvres', 'OeuvreController@getOeuvres');
 
 // Afficher un manga pour pouvoir le modifier
 
