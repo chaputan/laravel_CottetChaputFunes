@@ -1,4 +1,5 @@
- /* A compléter */
+@extends('layouts.master')
+@section('content')
 <div class="container">
     <div class="blanc">
         <h1>Liste des oeuvres</h1>
@@ -14,7 +15,7 @@
                 <th>Supprimer</th>
             </tr>
         </thead>
-         /* A compléter */
+        @foreach($oeuvres as $oeuvre)
         <tr>   
             <td>  /* A compléter */ </td>
             <td>  /* A compléter */ </td>
@@ -32,11 +33,11 @@
                 </a>
             </td>                    
         </tr>
-         /* A compléter */
+        @endforeach
         <BR> <BR>
     </table>
     <div class="col-md-6 col-md-offset-3">
-         /* A compléter */
+         @include('error')
     </div> 
 </div>
- /* A compléter */
+@stop
