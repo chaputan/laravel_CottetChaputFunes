@@ -41,7 +41,7 @@ class ReservationController extends Controller
             $erreur = $ex->getMessage();
         }
         //on renvoit la vue listeOeuvres
-        $reservations = $reservation->getOeuvres();
+        $reservations = $reservation->getReservations();
         return view('listeReservations', compact('reservations', 'erreur'));
     }
 }
