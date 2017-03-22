@@ -30,9 +30,10 @@ Route::get('/listerOeuvres', 'OeuvreController@getOeuvres');
 // Afficher un manga pour pouvoir le modifier
 
 // Enregistrer la mise à jour d'une oeuvre
+Route::post('/updateOeuvre','OeuvreController@updateOeuvre');
 
 // Afficher le formulaire de saisie d'une nouvelle oeuvre
-
+Route::get('/getFormOeuvre/{idOeuvre}', 'OeuvreController@getFormOeuvre');
 // Supprimer une oeuvre
 
 

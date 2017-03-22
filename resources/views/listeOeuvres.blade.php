@@ -23,7 +23,7 @@
             <td style="text-align:center;"><a href=" /* A compléter */">
                 <span class="glyphicon glyphicon-book" data-toggle="tooltip" data-placement="top" title="Réserver"></span></a>
             </td>            
-            <td style="text-align:center;"><a href=" /* A compléter */">
+            <td style="text-align:center;"><a href=" {{ url('/getFormOeuvre') }}/{{$oeuvre->id_oeuvre}}">
                 <span class="glyphicon glyphicon-pencil" data-toggle="tooltip" data-placement="top" title="Modifier"></span></a>
             </td>
             <td style="text-align:center;">

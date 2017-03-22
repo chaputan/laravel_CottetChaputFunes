@@ -1,14 +1,15 @@
 @extends('layouts.master')
 @section('content')
+{!! Form::open(['url' => 'updateOeuvre']) !!}
 <div class="col-md-12 well well-sm">
     <center><h1>{{$titreVue or ''}}</h1></center>
     <div class="form-horizontal">    
         <div class="form-group">
-            <input type="hidden" name="id_oeuvre" value=" /* A compléter */"/>
+            <input type="hidden" name="id_oeuvre" value="{{$oeuvres->id_oeuvre or 0}}"/>
             <label class="col-md-3 control-label">Titre : </label>
             <div class="col-md-3">
                 <input type="text" name="titre" 
-                    value=" /* A compléter */" class="form-control" required autofocus>
+                    value="{{$oeuvres->titre or ''}}" class="form-control" required autofocus>
             </div>
         </div>
         <div class="form-group">
@@ -16,14 +17,16 @@
             <div class="col-md-3">
                 <select class='form-control' name='cbProprietaire' required>
                     <OPTION VALUE=0>Sélectionner un proprietaire</option>
-                     /* A compléter */
+                     @foreach($props as $prop)
+                     <option value="{{$prop->id_proprietaire}}">{{$prop->nom_proprietaire}} {{$prop->prenom_proprietaire}} </option>
+                     @endforeach
                 </select>
             </div>
         </div>
         <div class="form-group">
             <label class="col-md-3 control-label">Prix : </label>
             <div class="col-md-3">
-                <input type="text" name="prix" value=" /* A compléter */" class="form-control"  required>
+                <input type="text" name="prix" value=" {{$oeuvres->prix or ''}}" class="form-control"  required>
             </div>
         </div>
         <div class="form-group">
@@ -43,5 +46,5 @@
         </div>        
     </div>
 </div>
- /* A compléter */
+{!! Form::close() !!}
 @stop

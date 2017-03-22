@@ -12,9 +12,52 @@ class Oeuvre extends Model
      */
     public function getOeuvres () {
         $oeuvres = DB::table('oeuvre')
-                ->Select('titre', 'nom_proprietaire', 'prenom_proprietaire')
+                ->Select('titre', 'nom_proprietaire', 'prenom_proprietaire', 'id_oeuvre')
                 ->join('proprietaire', 'oeuvre.id_proprietaire', '=', 'proprietaire.id_proprietaire')
                 ->get();
         return $oeuvres;
+    }
+    
+    /**
+     * Lecture de toutes les oeuvres avec mise en oeuvre des jointures
+     * @param int $idOeuvre ID de l'oeuvre
+     * @return Collection d'Oeuvre
+     */
+    public function getOeuvre ($idOeuvre) {
+        $oeuvres = DB::table('oeuvre')
+                ->Select('titre', 'nom_proprietaire', 'prenom_proprietaire', 'id_oeuvre')
+                ->join('proprietaire', 'oeuvre.id_proprietaire', '=', 'proprietaire.id_proprietaire')
+                ->where('id_oeuvre','=',$idOeuvre)
+                ->get();
+        return $oeuvres;
+    }
+    
+    /**
+     * Retourne le prochain ID à utiliser pour insérer de nouvelles données
+     * @return int Dernier ID utilisé + 1
+     */
+    public function nextOeuvreId() {
+        $ids = DB::table('oeuvre')
+                ->Select('id_oeuvre')
+                ->orderBy('id_oeuvre', 'DESC')
+                ->first();
+        return $ids->id_oeuvre + 1;
+    }
+    
+    /**
+     * Ajoute une nouvelle oeuvre
+     * @param String $titre Titre de l'oeuvre
+     * @param int $prop ID du propriétaire de l'oeuvre
+     * @param String $prix Prix de l'oeuvre
+     * @throws \App\modeles\Exception
+     */
+    public function ajouterOeuvre($titre,$prop,$prix) {
+        try{
+            DB::table('oeuvre')->insert(
+                    ['id_oeuvre' => $this->nextOeuvreId(),'titre' => $titre, 'id_proprietaire' => $prop, 'prix' => floatval($prix)]
+                    );
+        } catch (Exception $ex) {
+            throw $ex;
+        }
     }
 }

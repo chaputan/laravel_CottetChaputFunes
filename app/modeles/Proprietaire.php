@@ -33,6 +33,15 @@ class Proprietaire extends Model
     }
     
     /**
+     * Liste des propriétaires
+     * @return Collection de propriétaires
+     */
+    public function getProprietaires() {
+        $props = DB::table('proprietaire')->get();
+        return $props;
+    }
+    
+    /**
      * Délogue le propriétaire en supprimant son Id
      * de la session => le menu n'est plus accessible
      */
