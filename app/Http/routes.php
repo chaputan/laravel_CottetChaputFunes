@@ -27,14 +27,14 @@ Route::get('/signOut', 'ProprietaireController@signOut');
 // Afficher la liste des Oeuvres
 Route::get('/listerOeuvres', 'OeuvreController@getOeuvres');
 
-// Afficher un manga pour pouvoir le modifier
+// Afficher une oeuvre pour pouvoir le modifier
 
 // Enregistrer la mise à jour d'une oeuvre
 
 // Afficher le formulaire de saisie d'une nouvelle oeuvre
 
 // Supprimer une oeuvre
-
+Route::get('/supprimerOeuvre/{id_oeuvre}', 'OeuvreController@supprimerOeuvre');
 
 // Afficher la liste des réservations
 
