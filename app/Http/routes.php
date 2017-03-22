@@ -37,6 +37,7 @@ Route::get('/listerOeuvres', 'OeuvreController@getOeuvres');
 Route::get('/supprimerOeuvre/{id_oeuvre}', 'OeuvreController@supprimerOeuvre');
 
 // Afficher la liste des réservations
+Route::get('/listerReservations', 'ReservationController@getReservations');
 
 // Réserver une oeuvre
 

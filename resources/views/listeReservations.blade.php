@@ -1,4 +1,5 @@
- /* A compléter */
+@extends('layouts.master')
+@section('content')
 <div class="container">
     <div class="blanc">
         <h1>Liste des réservations</h1>
@@ -15,13 +16,13 @@
                 <th>Supprimer</th>
             </tr>
         </thead>
-         /* A compléter */
+        @foreach($reservations as $reservation)
         <tr>   
-            <td>  /* A compléter */ </td>
-            <td>  /* A compléter */ </td>       
-            <td>  /* A compléter */ </td>                 
-            <td>  /* A compléter */ </td>
-            <td>  /* A compléter */ </td>
+            <td>  {{ $reservation->titre }} </td>
+            <td>  {{ $reservation->date_reservation }} </td>       
+            <td>  {{ $reservation->statut }} </td>                 
+            <td>  {{ $reservation->prenom_adherent }} </td>
+            <td>  {{ $reservation->nom_adherent }} </td>
             <td style="text-align:center;"><a href=" /* A compléter */">
                 <span class="glyphicon glyphicon-pencil" data-toggle="tooltip" data-placement="top" title="Confirmer"></span></a>
             </td>            
@@ -32,11 +33,11 @@
                 </a>
             </td>                    
         </tr>
-         /* A compléter */
+        @endforeach
         <BR> <BR>
     </table>
     <div class="col-md-6 col-md-offset-3">
-         /* A compléter */
+         @include('error')
     </div> 
 </div>
- /* A compléter */
+@stop
