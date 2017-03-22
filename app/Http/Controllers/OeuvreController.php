@@ -35,7 +35,6 @@ class OeuvreController extends Controller
         $props = $prop->getProprietaires();
         $oeuvre = new Oeuvre();
         $oeuvres = $oeuvre->getOeuvre($idOeuvre);
-        var_dump($oeuvres);
         return view('formOeuvre', compact('props','oeuvres','erreur'));
     }
     
@@ -61,5 +60,26 @@ class OeuvreController extends Controller
             echo "Œuvre existante !"; // TODO : A faire !
         }
         return view('listeOeuvres');
+    }
+    
+    /**
+     * Récupère l'id de l'oeuvre à supprimer
+     * et supprime l'oeuvre dans la base de donnée
+     * @param entier id de l'oeuvre à supprimer
+     * @return Vue listeOeuvres
+     */
+    public function supprimerOeuvre ($id_oeuvre) {
+        $erreur = "";
+        //on récupère l'id de l'oeuvre à supprimer
+        $oeuvre = new Oeuvre ();
+        //on supprime l'oeuvre de la base
+        try {
+            $oeuvre->supprimerOeuvre($id_oeuvre);
+        } catch (Exception $ex) {
+            $erreur = $ex->getMessage();
+        }
+        //on renvoit la vue listeOeuvres
+        $oeuvres = $oeuvre->getOeuvres();
+        return view('listeOeuvres', compact('oeuvres', 'erreur'));
     }
 }

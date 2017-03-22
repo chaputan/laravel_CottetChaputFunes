@@ -27,7 +27,7 @@ Route::get('/signOut', 'ProprietaireController@signOut');
 // Afficher la liste des Oeuvres
 Route::get('/listerOeuvres', 'OeuvreController@getOeuvres');
 
-// Afficher un manga pour pouvoir le modifier
+// Afficher une oeuvre pour pouvoir le modifier
 
 // Enregistrer la mise à jour d'une oeuvre
 Route::post('/updateOeuvre','OeuvreController@updateOeuvre');
@@ -35,9 +35,10 @@ Route::post('/updateOeuvre','OeuvreController@updateOeuvre');
 // Afficher le formulaire de saisie d'une nouvelle oeuvre
 Route::get('/getFormOeuvre/{idOeuvre}', 'OeuvreController@getFormOeuvre');
 // Supprimer une oeuvre
-
+Route::get('/supprimerOeuvre/{id_oeuvre}', 'OeuvreController@supprimerOeuvre');
 
 // Afficher la liste des réservations
+Route::get('/listerReservations', 'ReservationController@getReservations');
 
 // Réserver une oeuvre
 
@@ -46,5 +47,5 @@ Route::get('/getFormOeuvre/{idOeuvre}', 'OeuvreController@getFormOeuvre');
 // Confirmer une réservation
 
 // Supprimer une réservation
-
+Route::get('/supprimerReservation/{date_reservation}/{id_oeuvre}', 'ReservationController@supprimerReservation');
 
