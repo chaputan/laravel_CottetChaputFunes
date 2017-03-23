@@ -60,14 +60,14 @@ class OeuvreController extends Controller
         if($titre == '' || $prop == 0 || $prix == '') {
             $erreur = 'Tous les champs ne sont pas remplis !';
             Session::put('erreur', $erreur);
-            return redirect('/getFormOeuvre/'.$id_oeuvre);
+            return redirect()->back()->withInput();
         }
         
         // Le champ "prix" ne contient pas un nombre
         if(floatVal($prix) == 0) {
             $erreur = 'Un nombre est attendu dans le prix !';
             Session::put('erreur', $erreur);
-            return redirect('/getFormOeuvre/'.$id_oeuvre);
+            return redirect()->back()->withInput();
         }
         
         $oeuvre = new Oeuvre();

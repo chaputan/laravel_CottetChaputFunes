@@ -34,6 +34,7 @@ Route::post('/updateOeuvre','OeuvreController@updateOeuvre');
 
 // Afficher le formulaire de saisie d'une nouvelle oeuvre
 Route::get('/getFormOeuvre/{idOeuvre}', 'OeuvreController@getFormOeuvre');
+Route::get('/getFormOeuvre/', 'OeuvreController@getFormOeuvre');
 // Supprimer une oeuvre
 Route::get('/supprimerOeuvre/{id_oeuvre}', 'OeuvreController@supprimerOeuvre');
 

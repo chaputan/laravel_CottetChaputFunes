@@ -9,7 +9,7 @@
             <label class="col-md-3 control-label">Titre : </label>
             <div class="col-md-3">
                 <input type="text" name="titre" 
-                    value="{{$oeuvre->titre or ''}}" class="form-control" required autofocus>
+                    value="{{$oeuvre->titre or old('titre')}}" class="form-control" required autofocus>
             </div>
         </div>
         <div class="form-group">
@@ -19,10 +19,13 @@
                     <OPTION VALUE=0>Sélectionner un proprietaire</option>
                      @foreach($props as $prop)
                      <option value="{{$prop->id_proprietaire}}"
-                         @if (!empty($oeuvre) && ($prop->id_proprietaire == $oeuvre->id_proprietaire))
-                            selected
-                         @endif
-                         >{{$prop->nom_proprietaire}} {{$prop->prenom_proprietaire}} </option>
+                             @if(!empty(old('cbProprietaire')) && $prop->id_proprietaire == old('cbProprietaire'))
+                             selected
+                             @endif
+                             @if (!empty($oeuvre) && ($prop->id_proprietaire == $oeuvre->id_proprietaire))
+                             selected
+                             @endif
+                             >{{$prop->nom_proprietaire}} {{$prop->prenom_proprietaire}} </option>
                      @endforeach
                 </select>
             </div>
@@ -30,7 +33,7 @@
         <div class="form-group">
             <label class="col-md-3 control-label">Prix : </label>
             <div class="col-md-3">
-                <input type="text" name="prix" value=" {{$oeuvre->prix or ''}}" class="form-control"  required>
+                <input type="text" name="prix" value="{{$oeuvre->prix or old('prix')}}" class="form-control"  required>
             </div>
         </div>
         <div class="form-group">
