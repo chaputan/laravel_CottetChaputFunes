@@ -4,6 +4,7 @@
     <div class="blanc">
         <h1>Liste des réservations</h1>
     </div>
+    @if(!empty($reservations))
     <table class="table table-bordered table-striped">
         <thead>
             <tr>
@@ -16,26 +17,29 @@
                 <th>Supprimer</th>
             </tr>
         </thead>
-        @foreach($reservations as $reservation)
-        <tr>   
-            <td>  {{ $reservation->titre }} </td>
-            <td>  {{ $reservation->date_reservation }} </td>       
-            <td>  {{ $reservation->statut }} </td>                 
-            <td>  {{ $reservation->prenom_adherent }} </td>
-            <td>  {{ $reservation->nom_adherent }} </td>
-            <td style="text-align:center;"><a href=" /* A compléter */">
-                <span class="glyphicon glyphicon-pencil" data-toggle="tooltip" data-placement="top" title="Confirmer"></span></a>
-            </td>            
-            <td style="text-align:center;">
-                <a class="glyphicon glyphicon-trash" data-toggle="tooltip" data-placement="top" title="Supprimer" href="#"
-                    onclick="javascript:if (confirm('Suppression confirmée ?'))
-                        { window.location='{{ url('/supprimerReservation') }}/{{ $reservation->date_reservation }}/{{ $reservation->id_oeuvre }}';}">
-                </a>
-            </td>                    
-        </tr>
-        @endforeach
-        <BR> <BR>
+            @foreach($reservations as $reservation)
+            <tr>   
+                <td>  {{ $reservation->titre }} </td>
+                <td>  {{ $reservation->date_reservation }} </td>       
+                <td>  {{ $reservation->statut }} </td>                 
+                <td>  {{ $reservation->prenom_adherent }} </td>
+                <td>  {{ $reservation->nom_adherent }} </td>
+                <td style="text-align:center;"><a href=" /* A compléter */">
+                    <span class="glyphicon glyphicon-pencil" data-toggle="tooltip" data-placement="top" title="Confirmer"></span></a>
+                </td>            
+                <td style="text-align:center;">
+                    <a class="glyphicon glyphicon-trash" data-toggle="tooltip" data-placement="top" title="Supprimer" href="#"
+                        onclick="javascript:if (confirm('Suppression confirmée ?'))
+                            { window.location='{{ url('/supprimerReservation') }}/{{ $reservation->date_reservation }}/{{ $reservation->id_oeuvre }}';}">
+                    </a>
+                </td>                    
+            </tr>
+            @endforeach
+            <BR> <BR>
     </table>
+    @else
+    <p> Aucune réservation effectuée pour l'instant !</p>
+    @endif
     <div class="col-md-6 col-md-offset-3">
          @include('error')
     </div> 
