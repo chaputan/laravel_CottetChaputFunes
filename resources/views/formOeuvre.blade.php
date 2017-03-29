@@ -36,7 +36,7 @@
                 </button>
                 &nbsp;
                 <button type="button" class="btn btn-default btn-primary" 
-                    onclick="javascript: window.location = ' /* A compléter */';">
+                    onclick="javascript: window.location = '{{ url('/listerOeuvres') }}';">
                     <span class="glyphicon glyphicon-remove"></span> Annuler
                 </button>
             </div>           

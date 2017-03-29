@@ -31,4 +31,15 @@ class Reservation extends Model
             throw $ex;
         }
     }
+    
+    public function reserverOeuvre ($id_oeuvre, $date_reservartion, $id_adherent) {
+        try {
+        DB::table('reservation')
+                ->insert(
+                    ['date_reservation' => $date_reservartion, 'id_oeuvre' => $id_oeuvre, 'id_adherent' => $id_adherent, 'statut' => "Attente"]
+                    );
+        } catch (Exception $ex) {
+            throw $ex;
+        }
+    }
 }

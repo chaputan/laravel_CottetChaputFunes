@@ -20,7 +20,7 @@
             <td>  {{ $oeuvre->titre }} </td>
             <td>  {{ $oeuvre->prenom_proprietaire }} </td>
             <td>  {{ $oeuvre->nom_proprietaire }} </td>
-            <td style="text-align:center;"><a href=" /* A compléter */">
+            <td style="text-align:center;"><a href=" {{ url('/getFormReserverOeuvre') }}/{{$oeuvre->id_oeuvre}}">
                 <span class="glyphicon glyphicon-book" data-toggle="tooltip" data-placement="top" title="Réserver"></span></a>
             </td>            
             <td style="text-align:center;"><a href=" {{ url('/getFormOeuvre') }}/{{$oeuvre->id_oeuvre}}">

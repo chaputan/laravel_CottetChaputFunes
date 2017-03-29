@@ -27,13 +27,12 @@ Route::get('/signOut', 'ProprietaireController@signOut');
 // Afficher la liste des Oeuvres
 Route::get('/listerOeuvres', 'OeuvreController@getOeuvres');
 
-// Afficher une oeuvre pour pouvoir le modifier
-
 // Enregistrer la mise à jour d'une oeuvre
 Route::post('/updateOeuvre','OeuvreController@updateOeuvre');
 
-// Afficher le formulaire de saisie d'une nouvelle oeuvre
+// Afficher le formulaire de saisie d'une nouvelle oeuvre ou Afficher une oeuvre pour pouvoir le modifier
 Route::get('/getFormOeuvre/{idOeuvre}', 'OeuvreController@getFormOeuvre');
+
 // Supprimer une oeuvre
 Route::get('/supprimerOeuvre/{id_oeuvre}', 'OeuvreController@supprimerOeuvre');
 
@@ -41,8 +40,10 @@ Route::get('/supprimerOeuvre/{id_oeuvre}', 'OeuvreController@supprimerOeuvre');
 Route::get('/listerReservations', 'ReservationController@getReservations');
 
 // Réserver une oeuvre
+Route::get('/getFormReserverOeuvre/{id_oeuvre}','ReservationController@formReserverOeuvre');
 
 // Valider une réservation
+Route::post('/reserverOeuvre', 'ReservationController@reserverOeuvre');
 
 // Confirmer une réservation
 

@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Request;
 use App\modeles\Reservation;
-use App\Http\Requests;
 use Illuminate\Support\Facades\Session;
+use App\modeles\Adherent;
+use App\modeles\Oeuvre;
 
 class ReservationController extends Controller
 {
@@ -43,5 +44,35 @@ class ReservationController extends Controller
         //on renvoit la vue listeOeuvres
         $reservations = $reservation->getReservations();
         return view('listeReservations', compact('reservations', 'erreur'));
+    }
+    
+    /**
+     * Retourne la vue de réservation d'une oeuvre
+     * @param type $id_oeuvre id de l'oeuvre à réserver
+     * @return Vue formReservation
+     */
+    public function formReserverOeuvre ($id_oeuvre) {
+        $erreur = "";
+        $adherent = new Adherent();
+        $adherents = $adherent->getAdherents();
+        $oeuvre = new Oeuvre();
+        $titre_oeuvre = $oeuvre->getTitreOeuvre($id_oeuvre)->titre;
+        return view('formReservation', compact('id_oeuvre', 'titre_oeuvre', 'adherents', 'erreur'));
+    }
+    
+    public function reserverOeuvre () {
+        $erreur = "";
+        $id_oeuvre = Request::input('id_oeuvre');
+        $date_reservation = Request::input('date_reservation');
+        $id_adherent = Request::input('cbAdherent');
+        $reservation = new Reservation ();
+        try {
+            $reservation->reserverOeuvre($id_oeuvre, $date_reservation, $id_adherent);
+        } catch (Exception $ex) {
+            $erreur = "Réservation impossible de l'oeuvre.";
+        }
+        $reservations = $reservation->getReservations();
+        //on affiche la liste de ces mangas
+        return view('listeReservations', compact('reservations', 'erreur'));        
     }
 }

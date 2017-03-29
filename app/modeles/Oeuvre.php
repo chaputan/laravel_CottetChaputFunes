@@ -34,6 +34,20 @@ class Oeuvre extends Model
     }
     
     /**
+     * 
+     * Récupère le titre de l'oeuvre dont l'id est donné en paramètre
+     * @param int $idOeuvre ID de l'oeuvre
+     * @return Oeuvre
+     */
+    public function getTitreOeuvre ($idOeuvre) {
+        $oeuvre = DB::table('oeuvre')
+                ->Select('titre')
+                ->where('id_oeuvre','=',$idOeuvre)
+                ->first();
+        return $oeuvre;
+    }
+    
+    /**
      * Retourne le prochain ID à utiliser pour insérer de nouvelles données
      * @return int Dernier ID utilisé + 1
      */
