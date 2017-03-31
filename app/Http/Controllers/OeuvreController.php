@@ -30,14 +30,26 @@ class OeuvreController extends Controller
      * @return Vue formOeuvre
      */
     public function getFormOeuvre ($idOeuvre = 0) {
-        $erreur = "";
+        $erreur = Session::get('erreur');
+        Session::forget('erreur');
         $prop = new Proprietaire();
         $props = $prop->getProprietaires();
         $oeuvre = new Oeuvre();
         $oeuvres = $oeuvre->getOeuvre($idOeuvre);
-        return view('formOeuvre', compact('props','oeuvres','erreur'));
+        
+        if(empty($oeuvres)) {
+            $oeuvre = null;
+        } else {
+            $oeuvre = $oeuvres[0];
+        }
+
+        return view('formOeuvre', compact('props','oeuvre','erreur'));
     }
     
+    /**
+     * Insert ou mets à jour une oeuvre
+     * @return Vue
+     */
     public function updateOeuvre() {
         $id_oeuvre = Request::input('id_oeuvre');
         
@@ -45,21 +57,45 @@ class OeuvreController extends Controller
         $prop = Request::input('cbProprietaire');
         $prix = Request::input('prix');
         
+        if($titre == '' || $prop == 0 || $prix == '') {
+            $erreur = 'Tous les champs ne sont pas remplis !';
+            Session::put('erreur', $erreur);
+            return redirect()->back()->withInput();
+        }
+        
+        // Le champ "prix" ne contient pas un nombre
+        if(floatVal($prix) == 0) {
+            $erreur = 'Un nombre est attendu dans le prix !';
+            Session::put('erreur', $erreur);
+            return redirect()->back()->withInput();
+        }
+        
         $oeuvre = new Oeuvre();
         
         if($id_oeuvre == 0) {
-            $oeuvre->ajouterOeuvre($titre, $prop, $prix);
-            $erreur = Session::get('erreur');
-            $oeuvres = new Oeuvre();
-            //on récupère la liste de tous les mangas
-            $oeuvres = $oeuvres->getOeuvres();
-            //on affiche la liste de ces mangas
-            return view('listeOeuvres', compact('oeuvres', 'erreur'));
+            try{
+                $oeuvre->ajouterOeuvre($titre, $prop, $prix);
+            } catch(Exception $e) {
+                $erreur = $e->getMessage();
+                Session::put('erreur', $erreur);
+                return redirect('/getFormOeuvre/'.$id_oeuvre);
+            }
         } 
         else {
-            echo "Œuvre existante !"; // TODO : A faire !
+            try{
+                $oeuvre->updateOeuvre($id_oeuvre, $titre, $prop, $prix);
+            } catch(Exception $e) {
+                $erreur = $e->getMessage();
+                Session::put('erreur', $erreur);
+                return redirect('/getFormOeuvre/'.$id_oeuvre);
+            }
         }
-        return view('listeOeuvres');
+        
+        $erreur = Session::get('erreur');
+        //on récupère la liste de tous les mangas
+        $oeuvres = $oeuvre->getOeuvres();
+        //on affiche la liste de ces mangas
+        return view('listeOeuvres', compact('oeuvres', 'erreur'));
     }
     
     /**

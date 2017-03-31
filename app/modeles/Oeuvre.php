@@ -12,7 +12,7 @@ class Oeuvre extends Model
      */
     public function getOeuvres () {
         $oeuvres = DB::table('oeuvre')
-                ->Select('titre', 'nom_proprietaire', 'prenom_proprietaire', 'id_oeuvre')
+                ->Select('titre', 'nom_proprietaire', 'prenom_proprietaire', 'id_oeuvre', 'prix', 'proprietaire.id_proprietaire')
                 ->join('proprietaire', 'oeuvre.id_proprietaire', '=', 'proprietaire.id_proprietaire')
                 ->get();
         return $oeuvres;
@@ -26,7 +26,7 @@ class Oeuvre extends Model
      */
     public function getOeuvre ($idOeuvre) {
         $oeuvres = DB::table('oeuvre')
-                ->Select('titre', 'nom_proprietaire', 'prenom_proprietaire', 'id_oeuvre')
+                ->Select('titre', 'nom_proprietaire', 'prenom_proprietaire', 'id_oeuvre', 'prix', 'proprietaire.id_proprietaire')
                 ->join('proprietaire', 'oeuvre.id_proprietaire', '=', 'proprietaire.id_proprietaire')
                 ->where('id_oeuvre','=',$idOeuvre)
                 ->get();
@@ -70,6 +70,26 @@ class Oeuvre extends Model
         try{
             DB::table('oeuvre')->insert(
                     ['id_oeuvre' => $this->nextOeuvreId(),'titre' => $titre, 'id_proprietaire' => $prop, 'prix' => floatval($prix)]
+                    );
+        } catch (Exception $ex) {
+            throw $ex;
+        }
+    
+    }
+    
+    /**
+     * Mets à jour une œuvre existante
+     * @param int $idOeuvre ID de l'œuvre
+     * @param String $titre Titre de l'oeuvre
+     * @param int $prop ID du propriétaire de l'oeuvre
+     * @param String $prix Prix de l'oeuvre
+     * @throws \App\modeles\Exception
+     */
+    public function updateOeuvre($idOeuvre, $titre,$prop,$prix) {
+        try{
+            DB::table('oeuvre')->where('id_oeuvre', '=', $idOeuvre)
+                    ->update(
+                    ['titre' => $titre, 'id_proprietaire' => $prop, 'prix' => floatval($prix)]
                     );
         } catch (Exception $ex) {
             throw $ex;

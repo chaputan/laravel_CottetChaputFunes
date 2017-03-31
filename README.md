@@ -1,1 +1,24 @@
-# laravel_CottetChaputFunes
+# Projet ISI2 - Polytech Lyon
+
+Projet de gestion des oeuvres et de leurs réservations sous le framework Laravel
+
+## Équipe
+
+- Anthony Chaput
+- Clément Cottet
+- Héléna Funes
+
+## Extensions effectués
+
+| Effectué  | Extension  |
+|---|---|
+|   | Messages d'erreurs  |
+|   | Date réservation (calendrier)  | 
+|   | Date réservation (format)  |
+|   | Réservation  |
+| X | Saisie nouvelle œuvre  |
+|   | Confirmation de réservation (changement de status)  |
+|   | Confirmation de réservation (confirmation status) |
+| X | Gestion liste réservation vide  |
+
+© 2017 - Polytech Lyon - Université Claude Bernard Lyon 1 
