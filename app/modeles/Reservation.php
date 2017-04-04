@@ -21,6 +21,14 @@ class Reservation extends Model
         return $reservations;
     }
     
+    public function getNbReservationOeuvre ($id_oeuvre) {
+        $nbReservation = DB::table('reservation')
+                ->where('id_oeuvre', '=', $id_oeuvre)
+                ->count();
+        
+        return $nbReservation;
+    }
+    
     
     public function supprimerReservation($date_reservation, $id_oeuvre) {
         try {

@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\modeles\Oeuvre;
+use App\modeles\Reservation;
 use Request;
 use Illuminate\Support\Facades\Session;
 use App\modeles\Proprietaire;
+use Illuminate\Support\Collection;
 
 class OeuvreController extends Controller
 {
@@ -106,7 +108,15 @@ class OeuvreController extends Controller
      */
     public function supprimerOeuvre ($id_oeuvre) {
         $erreur = "";
-        //on récupère l'id de l'oeuvre à supprimer
+        //si il y a des réservations on ne peut pas supprimer l'oeuvre
+        $reservation = new Reservation();
+        $nbReservation = $reservation->getNbReservationOeuvre($id_oeuvre);
+        if ($nbReservation > 0) {
+            $erreur = "Il y a des réservations sur cette oeuvre, impossible de la supprimer.";
+            Session::put('erreur', $erreur);
+            return redirect('/listerOeuvres');     
+        }
+        
         $oeuvre = new Oeuvre ();
         //on supprime l'oeuvre de la base
         try {
