@@ -52,7 +52,8 @@ class ReservationController extends Controller
      * @return Vue formReservation
      */
     public function formReserverOeuvre ($id_oeuvre) {
-        $erreur = "";
+        $erreur = Session::get('erreur');
+        Session::forget('erreur');
         $adherent = new Adherent();
         $adherents = $adherent->getAdherents();
         $oeuvre = new Oeuvre();
@@ -61,10 +62,16 @@ class ReservationController extends Controller
     }
     
     public function reserverOeuvre () {
-        $erreur = "";
         $id_oeuvre = Request::input('id_oeuvre');
         $date_reservation = Request::input('date_reservation');
         $id_adherent = Request::input('cbAdherent');
+        
+        if ($id_adherent == 0 || isEmptyString($date_reservation)) {
+            $erreur = "Tous les champs doivent être renseignés.";
+            Session::put('erreur', $erreur);
+            return redirect()->back()->withInput();
+        }
+        
         $reservation = new Reservation ();
         try {
             $reservation->reserverOeuvre($id_oeuvre, $date_reservation, $id_adherent);

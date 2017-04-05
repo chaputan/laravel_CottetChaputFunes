@@ -12,7 +12,7 @@
         <div class="form-group">
             <label class="col-md-3 control-label">Date réservation : </label>
             <div class="col-md-3">
-                    <input type="text" name="date_reservation" id="date_reservation" value="" class="form-control" placeholder="AAAA-MM-JJ" required/>
+                    <input type="text" name="date_reservation" id="date_reservation" value="{{old('date_reservation')}}" class="form-control" placeholder="AAAA-MM-JJ" required/>
             </div>
         </div>        
         <div class="form-group">
@@ -21,7 +21,11 @@
                 <select class='form-control' name='cbAdherent' required>
                     <OPTION VALUE=0>Sélectionner un adhérent</option>
                     @foreach ($adherents as $adherent)
-                        <OPTION VALUE="{{ $adherent->id_adherent }}"> {{ $adherent->nom_adherent }} {{ $adherent->prenom_adherent }} </option>
+                        <OPTION VALUE="{{ $adherent->id_adherent }}" 
+                                @if(old('cbAdherent') == $adherent->id_adherent) 
+                                    {{ "selected" }} 
+                                @endif
+                                > {{ $adherent->nom_adherent }} {{ $adherent->prenom_adherent }} </option>
                     @endforeach
                 </select>
             </div>
