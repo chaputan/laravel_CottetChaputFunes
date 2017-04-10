@@ -24,7 +24,7 @@
                 <td>  {{ $reservation->statut }} </td>                 
                 <td>  {{ $reservation->prenom_adherent }} </td>
                 <td>  {{ $reservation->nom_adherent }} </td>
-                <td style="text-align:center;"><a href=" /* A compléter */">
+                <td style="text-align:center;"><a href="{{ url('/confirmerReservationOeuvre') }}/{{$reservation->id_oeuvre}}/{{$reservation->date_reservation}}">
                     <span class="glyphicon glyphicon-pencil" data-toggle="tooltip" data-placement="top" title="Confirmer"></span></a>
                 </td>            
                 <td style="text-align:center;">

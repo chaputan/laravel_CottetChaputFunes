@@ -48,6 +48,7 @@ Route::get('/getFormReserverOeuvre/{id_oeuvre}','ReservationController@formReser
 Route::post('/reserverOeuvre', 'ReservationController@reserverOeuvre');
 
 // Confirmer une réservation
+Route::get('/confirmerReservationOeuvre/{id_oeuvre}/{date_reservation}', 'ReservationController@confirmerReservationOeuvre');
 
 // Supprimer une réservation
 Route::get('/supprimerReservation/{date_reservation}/{id_oeuvre}', 'ReservationController@supprimerReservation');

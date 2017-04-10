@@ -89,4 +89,16 @@ class ReservationController extends Controller
         $erreur = "";
         return view('listeReservations', compact('reservations', 'erreur'));        
     }
+    
+    public function confirmerReservationOeuvre ($id_oeuvre, $date_reservation) {
+        $erreur = "";
+        $reservation = new Reservation();
+        try {
+            $reservation->confirmerReservationOeuvre($id_oeuvre, $date_reservation);
+        } catch (QueryException $ex) {
+            $erreur = "La réservation ne peut pas être confirmer.";
+        }
+        $reservations = $reservation->getReservations();
+        return view('listeReservations', compact('reservations', 'erreur')); 
+    }
 }

@@ -44,10 +44,21 @@ class Reservation extends Model
     
     public function reserverOeuvre ($id_oeuvre, $date_reservartion, $id_adherent) {
         try {
-        DB::table('reservation')
+            DB::table('reservation')
                 ->insert(
                     ['date_reservation' => $date_reservartion, 'id_oeuvre' => $id_oeuvre, 'id_adherent' => $id_adherent, 'statut' => "Attente"]
                     );
+        } catch (QueryException $ex) {
+            throw $ex;
+        }
+    }
+    
+    public function confirmerReservationOeuvre ($id_oeuvre, $date_reservation) {
+        try {
+            DB::table('reservation')
+                ->where('date_reservation', '=', $date_reservation)
+                ->where('id_oeuvre', '=', $id_oeuvre)
+                ->update(['statut' => "Confirmée"]);
         } catch (QueryException $ex) {
             throw $ex;
         }
