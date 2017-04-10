@@ -4,6 +4,7 @@ namespace App\modeles;
 
 use DB;
 use Illuminate\Database\Eloquent\Model;
+use \Illuminate\Database\QueryException;
 
 class Reservation extends Model
 {
@@ -33,7 +34,8 @@ class Reservation extends Model
     public function supprimerReservation($date_reservation, $id_oeuvre) {
         try {
         DB::table('reservation')
-                ->where('date_reservation', '=', $date_reservation, 'and', 'id_oeuvre', '=', $id_oeuvre)
+                ->where('date_reservation', '=', $date_reservation)
+                ->where('id_oeuvre', '=', $id_oeuvre)
                 ->delete();
         } catch (Exception $ex) {
             throw $ex;
@@ -46,7 +48,7 @@ class Reservation extends Model
                 ->insert(
                     ['date_reservation' => $date_reservartion, 'id_oeuvre' => $id_oeuvre, 'id_adherent' => $id_adherent, 'statut' => "Attente"]
                     );
-        } catch (Exception $ex) {
+        } catch (QueryException $ex) {
             throw $ex;
         }
     }

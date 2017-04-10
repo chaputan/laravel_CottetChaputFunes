@@ -7,6 +7,8 @@ use App\modeles\Reservation;
 use Illuminate\Support\Facades\Session;
 use App\modeles\Adherent;
 use App\modeles\Oeuvre;
+use \Illuminate\Database\QueryException;
+use DateTime;
 
 class ReservationController extends Controller
 {
@@ -64,9 +66,11 @@ class ReservationController extends Controller
     public function reserverOeuvre () {
         $id_oeuvre = Request::input('id_oeuvre');
         $date_reservation = Request::input('date_reservation');
+        //pense bête pour le format français / anglais
+        /*$date_reservation = new DateTime ($date_reservation)->format($format);*/
         $id_adherent = Request::input('cbAdherent');
         
-        if ($id_adherent == 0 || isEmptyString($date_reservation)) {
+        if ($id_adherent == 0) {
             $erreur = "Tous les champs doivent être renseignés.";
             Session::put('erreur', $erreur);
             return redirect()->back()->withInput();
@@ -75,11 +79,14 @@ class ReservationController extends Controller
         $reservation = new Reservation ();
         try {
             $reservation->reserverOeuvre($id_oeuvre, $date_reservation, $id_adherent);
-        } catch (Exception $ex) {
-            $erreur = "Réservation impossible de l'oeuvre.";
+        } catch (QueryException $ex) {
+            $erreur = "Réservation impossible de l'oeuvre, l'oeuvre est déjà réservée à cette date là.";
+            Session::put('erreur', $erreur);
+            return redirect()->back()->withInput();
         }
         $reservations = $reservation->getReservations();
         //on affiche la liste de ces mangas
+        $erreur = "";
         return view('listeReservations', compact('reservations', 'erreur'));        
     }
 }
