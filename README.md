@@ -15,10 +15,10 @@ Projet de gestion des oeuvres et de leurs réservations sous le framework Larave
 |   | Messages d'erreurs  |
 |   | Date réservation (calendrier)  | 
 |   | Date réservation (format)  |
-|   | Réservation  |
+| X | Réservation  |
 | X | Saisie nouvelle œuvre  |
-|   | Confirmation de réservation (changement de status)  |
-|   | Confirmation de réservation (confirmation status) |
+| X | Confirmation de réservation (changement de status)  |
+| X | Confirmation de réservation (confirmation status) |
 | X | Gestion liste réservation vide  |
 
 © 2017 - Polytech Lyon - Université Claude Bernard Lyon 1 
