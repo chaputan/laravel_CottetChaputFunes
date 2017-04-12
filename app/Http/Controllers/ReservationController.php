@@ -23,7 +23,7 @@ class ReservationController extends Controller
         $reservations = new Reservation();
         //on récupère la liste de tous les mangas
         $reservations = $reservations->getReservations();
-        //on affiche la liste de ces mangas
+        //on affiche la liste de ces oeuvres
         return view('listeReservations', compact('reservations', 'erreur'));
     }
     
@@ -66,6 +66,7 @@ class ReservationController extends Controller
     public function reserverOeuvre () {
         $id_oeuvre = Request::input('id_oeuvre');
         $date_reservation = Request::input('date_reservation');
+        $date_reservation = DateTime::createFromFormat("d/m/Y", $date_reservation)->format("Y-m-d"); // Bascule date francaise en format ISO
         //pense bête pour le format français / anglais
         /*$date_reservation = new DateTime ($date_reservation)->format($format);*/
         $id_adherent = Request::input('cbAdherent');

@@ -12,7 +12,7 @@
         <div class="form-group">
             <label class="col-md-3 control-label">Date réservation : </label>
             <div class="col-md-3">
-                    <input type="text" name="date_reservation" id="date_reservation" value="{{old('date_reservation')}}" class="form-control" placeholder="AAAA-MM-JJ" required/>
+                    <input data-provide="datepicker" data-date-format="dd/mm/yyyy" data-date-language="fr" type="text" name="date_reservation" id="date_reservation" value="{{old('date_reservation')}}" class="form-control" placeholder="JJ/MM/AAAA" required/>
             </div>
         </div>        
         <div class="form-group">

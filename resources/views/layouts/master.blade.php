@@ -4,6 +4,7 @@
         {!! Html::style('assets/css/bootstrap.css') !!}
         {!! Html::style('assets/css/mangas.css') !!}
         {!! Html::style('assets/css/bootstrap-theme.css') !!}
+        {!! Html::style('assets/css/bootstrap-datepicker.min.css') !!}
     </head>
     <body class="body">
         <div class="container">
@@ -42,8 +43,11 @@
         <div class="container">
             @yield('content')
         </div>
+        {!! Html::script('assets/js/jquery-3.1.1.min.js') !!}
         {!! Html::script('assets/js/bootstrap.min.js') !!}
         {!! Html::script('assets/js/ui-bootstrap-tpls.js') !!}
         {!! Html::script('assets/js/bootstrap.js') !!}
+        {!! Html::script('assets/js/bootstrap-datepicker.min.js') !!}
+        {!! Html::script('assets/locales/bootstrap-datepicker.fr.min.js') !!}
     </body>
 </html>

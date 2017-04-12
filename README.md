@@ -13,7 +13,7 @@ Projet de gestion des œuvres et de leurs réservations sous le framework Larave
 | Effectué  | Extension  |
 |---|---|
 |   | Messages d'erreurs  |
-|   | Date réservation (calendrier)  | 
+| X | Date réservation (calendrier)  | 
 |   | Date réservation (format)  |
 | X | Réservation  |
 | X | Saisie nouvelle œuvre  |
