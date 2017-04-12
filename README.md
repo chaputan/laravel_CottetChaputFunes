@@ -1,6 +1,6 @@
 # Projet ISI2 - Polytech Lyon
 
-Projet de gestion des oeuvres et de leurs réservations sous le framework Laravel
+Projet de gestion des œuvres et de leurs réservations sous le framework Laravel
 
 ## Équipe
 
@@ -8,7 +8,7 @@ Projet de gestion des oeuvres et de leurs réservations sous le framework Larave
 - Clément Cottet
 - Héléna Funes
 
-## Extensions effectués
+## Extensions effectuées
 
 | Effectué  | Extension  |
 |---|---|
