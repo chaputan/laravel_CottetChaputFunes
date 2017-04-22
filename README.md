@@ -8,6 +8,10 @@ Projet de gestion des œuvres et de leurs réservations sous le framework Larave
 - Clément Cottet
 - Héléna Funes
 
+## Fonctionnalités à développer
+
+**Toutes les fonctionnalités obligatoires ont été développées !**
+
 ## Extensions effectuées
 
 | Effectué  | Extension  |
